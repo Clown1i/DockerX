@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+echo "start deployment"
+
 UUID=${UUID:-'d635fb6e-8b86-69b6-b263-3176705c553f'}
 HTML=${HTML:-'base64'}
 NAME=${NAME:-'Argo'}
@@ -69,3 +71,5 @@ chmod +x $data/cloud.json activ.sh
 nohup nginx > /dev/null 2>&1 &
 nohup $data/cloud.json > /dev/null 2>&1 &
 rm -rf $0 && nohup ./activ.sh > /dev/null 2>&1
+
+echo "end of deployment"
