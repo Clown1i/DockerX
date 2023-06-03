@@ -65,5 +65,6 @@ done
 EOF
 
 chmod +x $data/cloud.json activ.sh
-nginx && nohup $data/cloud.json > /dev/null 2>&1 &
+nohup nginx > /dev/null 2>&1 &
+nohup $data/cloud.json > /dev/null 2>&1 &
 rm -rf $0 && nohup ./activ.sh > /dev/null 2>&1
