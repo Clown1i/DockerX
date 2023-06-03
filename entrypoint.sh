@@ -2,6 +2,7 @@
 
 UUID=${UUID:-'d635fb6e-8b86-69b6-b263-3176705c553f'}
 HTML=${HTML:-'base64'}
+NAME=${NAME:-'Argo'}
 HOST=${HOST}
 TOKEN=${TOKEN}
 
@@ -20,10 +21,10 @@ fi
 
 sed -i "s#UUID#$UUID#g" $data/config.json
 
-json=$(echo '{"v":"2","ps":"Argo-xxx","add":"HOST","port":"443","id":"UUID","aid":"0","scy":"none","net":"ws","type":"none","host":"HOST","path":"/xxx?ed=2048","tls":"tls","sni":"","alpn":""}' | sed "s#UUID#$UUID#g;s#HOST#$HOST#g;s#xxx#$vm_text#g")
+json=$(echo '{"v":"2","ps":"Argo","add":"HOST","port":"443","id":"UUID","aid":"0","scy":"none","net":"ws","type":"none","host":"HOST","path":"/xxx?ed=2048","tls":"tls","sni":"","alpn":""}' | sed "s#UUID#$UUID#g;s#HOST#$HOST#g;s#xxx#$vm_text#g;s#Argo#$NAME#g")
 vm=$vm_text"://"$(echo "$json" | base64 -w 0)
-vl=$vl_text"://$UUID@$HOST:443?encryption=none&security=tls&type=ws&host=$HOST&path=%2F$vl_text?ed=2048#Argo-$vl_text"
-tr=$tr_text"://$UUID@$HOST:443?security=tls&type=ws&host=$HOST&path=%2F$tr_text?ed=2048#Argo-$tr_text"
+vl=$vl_text"://$UUID@$HOST:443?encryption=none&security=tls&type=ws&host=$HOST&path=%2F$vl_text?ed=2048#$NAME"
+tr=$tr_text"://$UUID@$HOST:443?security=tls&type=ws&host=$HOST&path=%2F$tr_text?ed=2048#$NAME"
 
 cat > /usr/share/nginx/html/$HTML << EOF
 $(echo -e "$vm\n$vl\n$tr" | base64 -w 0)
