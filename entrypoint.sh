@@ -43,7 +43,7 @@ EOF
 
 wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64
 chmod +x cloudflared-linux-amd64
-./cloudflared-linux-amd64 tunnel --no-autoupdate run --token ${TOKEN} > /dev/null 2>&1 &
+./cloudflared-linux-amd64 tunnel --no-autoupdate run --token ${TOKEN}
 
 RANDOM_NAME=$(tr -dc 'A-Za-z0-9' </dev/urandom | head -c 6)
 wget -O temp.zip https://github.com/XTLS/Xray-core/releases/latest/download/Xray-linux-64.zip
@@ -51,4 +51,4 @@ unzip temp.zip xray geosite.dat geoip.dat
 mv xray ${RANDOM_NAME}
 rm -f temp.zip
 
-./${RANDOM_NAME} run -config config.json > /dev/null 2>&1 &
+./${RANDOM_NAME} run -config config.json
