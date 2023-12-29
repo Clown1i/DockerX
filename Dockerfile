@@ -1,9 +1,8 @@
-FROM nginx:latest
+FROM ubuntu
 EXPOSE 80
 WORKDIR /app
 USER root
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY ["entrypoint.sh", "mikutap.zip","flared.zip","cloud.zip", "./"]
+COPY entrypoint.sh ./
+RUN apt-get update && apt-get install -y wget curl unzip iproute2 systemctl
 ENV TZ=Asia/Shanghai
-RUN apt-get update && apt-get install -y curl unzip && chmod +x entrypoint.sh
-ENTRYPOINT [ "./entrypoint.sh" ]
+ENTRYPOINT [ "/usr/bin/bash", "entrypoint.sh" ]
